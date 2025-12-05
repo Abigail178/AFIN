@@ -307,6 +307,7 @@
             position: relative;
             overflow: hidden;
             transition: all 0.4s ease;
+            height: 100%
         }
         
         .stat-card::before {
@@ -568,6 +569,13 @@
             justify-content: center;
             gap: 2rem;
         }
+
+        .market-map {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
         
         .map-placeholder {
             font-size: 5rem;
@@ -936,6 +944,34 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
+
+        #lossAmount {
+            display: inline-block;
+            width: 120px;   /* súbele si ves números muy grandes */
+            text-align: right;
+        }
+
+        .loss-counter {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            white-space: nowrap;
+        }
+
+        #lossValue {
+            display: inline-block;
+            min-width: 160px;  /* espacio fijo para que el valor crezca sin empujar el texto */
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .loss-label {
+            font-weight: 500;
+        }
+
+
+
+
         
         .breakdown-item:hover {
             transform: translateX(10px);
@@ -1306,6 +1342,29 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
         }
+
+
+        .stat-value {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .stat-number {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 700;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--accent);
+        }
+
+        .stat-unit {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            color: var(--accent);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
         
         /* Sticky CTA */
         .sticky-cta {
@@ -1396,10 +1455,10 @@
             </h1>
             
             <div class="loss-counter">
-                <span>-$</span>
-                <span id="lossAmount">0</span>
-                <span>MXN perdidos hoy</span>
+                <span id="lossValue">-$0</span>
+                <span class="loss-label">MXN perdidos hoy</span>
             </div>
+
             
             <p class="hero-subtitle">
                 ¿Y si existiera una forma inteligente de proteger<br>
@@ -1449,18 +1508,27 @@
             
             <div class="stats-grid">
                 <div class="stat-card fade-in">
-                    <span class="stat-number" data-count="8.5">0</span>
-                    <p class="stat-label">Millones de mexicanos<br>con capacidad de inversión</p>
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="8.5">0</span>
+                        <span class="stat-unit">millones</span>
+                    </div>
+                    <p class="stat-label">de mexicanos<br>con capacidad de inversión</p>
+                </div>
+
+                <div class="stat-card fade-in">
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-unit">mil</span>
+                    </div>
+                    <p class="stat-label">PYMEs con excedentes<br>sin invertir</p>
                 </div>
                 
                 <div class="stat-card fade-in">
-                    <span class="stat-number" data-count="500">0</span>
-                    <p class="stat-label">Mil PYMEs con excedentes<br>sin invertir</p>
-                </div>
-                
-                <div class="stat-card fade-in">
-                    <span class="stat-number" data-count="15">0</span>
-                    <p class="stat-label">% usa asesoría<br>independiente</p>
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="15">0</span>
+                        <span class="stat-unit">%</span>
+                    </div>
+                    <p class="stat-label">usa asesoría<br>independiente</p>
                 </div>
             </div>
             
@@ -1469,6 +1537,7 @@
             </p>
         </div>
     </section>
+
 
     <!-- Solution Section -->
     <section class="solution" id="solution">
@@ -1535,7 +1604,7 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how">
         <div class="container">
-            <h2 class="section-title">Cómo Funciona</h2>
+            <h2 class="section-title">¿Cómo Funciona?</h2>
             <p class="section-subtitle">
                 Un proceso claro y transparente desde el primer día
             </p>
@@ -1600,7 +1669,7 @@
             
             <div class="market-split">
                 <div class="market-visual fade-in">
-                    <div class="map-placeholder">🗺️</div>
+                    <img src="mapa.png" alt="Mapa de México con CDMX, GDL y MTY" class="market-map">
                     <div class="cities">
                         <div class="city-badge">CDMX</div>
                         <div class="city-badge">MTY</div>
@@ -1899,46 +1968,6 @@
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <div class="container">
-            <h2 class="section-title">El Equipo</h2>
-            <p class="section-subtitle">
-                Profesionales certificados con experiencia comprobada
-            </p>
-            
-            <div class="team-grid">
-                <div class="team-card fade-in">
-                    <div class="team-photo">👤</div>
-                    <h3 class="team-name">Directora General</h3>
-                    <p class="team-role">Certificación CFA</p>
-                    <p class="team-description">15+ años en gestión patrimonial y asesoría de inversión independiente</p>
-                </div>
-                
-                <div class="team-card fade-in">
-                    <div class="team-photo">👤</div>
-                    <h3 class="team-name">Analista Senior</h3>
-                    <p class="team-role">CFP, AMIB</p>
-                    <p class="team-description">Track record demostrable en portafolios de alto rendimiento</p>
-                </div>
-                
-                <div class="team-card fade-in">
-                    <div class="team-photo">👤</div>
-                    <h3 class="team-name">Asesor Fiscal</h3>
-                    <p class="team-role">Contador Público</p>
-                    <p class="team-description">Especialista en optimización fiscal y estructuras patrimoniales</p>
-                </div>
-            </div>
-            
-            <div class="certifications fade-in">
-                <div class="cert-badge">CFA Institute</div>
-                <div class="cert-badge">CFP Board</div>
-                <div class="cert-badge">AMIB</div>
-                <div class="cert-badge">Brokers Internacionales</div>
-            </div>
-        </div>
-    </section>
-
     <!-- Roadmap -->
     <section class="roadmap" id="roadmap">
         <div class="container">
@@ -2082,12 +2111,16 @@
 
         // Loss Counter Animation
         let lossAmount = 0;
-        const lossElement = document.getElementById('lossAmount');
-        
-        setInterval(() => {
-            lossAmount += Math.floor(Math.random() * 50) + 10;
-            lossElement.textContent = lossAmount.toLocaleString('es-MX');
-        }, 100);
+        const lossValueEl = document.getElementById('lossValue');
+
+        if (lossValueEl) {
+            setInterval(() => {
+                lossAmount += Math.floor(Math.random() * 50) + 10;
+                // El -$ va junto con la cantidad
+                lossValueEl.textContent = "-$" + lossAmount.toLocaleString('es-MX');
+            }, 100);
+        }
+
 
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
@@ -2109,7 +2142,7 @@
 
         // Stat cards animation
         const statCards = document.querySelectorAll('.stat-card');
-        
+
         statCards.forEach(card => {
             ScrollTrigger.create({
                 trigger: card,
@@ -2119,7 +2152,6 @@
                     const numberElem = card.querySelector('.stat-number');
                     const target = parseFloat(numberElem.getAttribute('data-count'));
                     
-                    // Simple counter animation
                     let current = 0;
                     const increment = target / 60;
                     const timer = setInterval(() => {
@@ -2128,11 +2160,17 @@
                             current = target;
                             clearInterval(timer);
                         }
-                        numberElem.textContent = current.toFixed(1);
+
+                        if (Number.isInteger(target)) {
+                            numberElem.textContent = Math.round(current);
+                        } else {
+                            numberElem.textContent = current.toFixed(1);
+                        }
                     }, 30);
                 }
             });
         });
+
 
         // Chart.js Revenue Chart
         const ctx = document.getElementById('revenueChart');
